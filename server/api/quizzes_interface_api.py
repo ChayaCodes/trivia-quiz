@@ -8,7 +8,8 @@ from business_logic.admin_interface import (
     view_quizzes,
     get_current_active_question,
     go_to_next_question,
-    get_participants
+    get_participants,
+    get_top_participants
 )
 import dotenv
 
@@ -94,4 +95,11 @@ def api_go_to_next_question(user_id, quiz_id):
 @token_required
 def api_get_participants(user_id, quiz_id):
     response, status = get_participants(quiz_id)
+    return jsonify(response), status
+
+
+@quizzes_interface_api.route('/admin/top_participants/<quiz_id>', methods=['GET'])
+@token_required
+def api_get_top_participants(user_id, quiz_id):
+    response, status = get_top_participants(quiz_id, limit=10)
     return jsonify(response), status

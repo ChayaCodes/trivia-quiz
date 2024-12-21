@@ -468,3 +468,5 @@ def get_all_participants(quiz_id):
         return []
     finally:
         conn.close()
+
+

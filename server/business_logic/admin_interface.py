@@ -230,4 +230,34 @@ def get_current_active_question(quiz_id):
     return {'current_question': current_question}, 200
     
 
+def get_top_participants(quiz_id, limit=10):
+    """
+    Retrieves the top participants for a given quiz based on their scores.
+
+    :param quiz_id: מזהה החידון.
+    :param limit: מספר המשתתפים המובילים להחזיר.
+    :return: Tuple עם רשימת המשתתפים המובילים וקוד סטטוס HTTP.
+    """
+    try:
+        participants = get_all_participants(quiz_id)
+        if not participants:
+            return {'error': 'אין משתתפים לחידון זה.'}, 404
+
+        participant_scores = []
+        for participant in participants:
+            phone_number = participant['phone_number']
+            answers = get_participant_answers(phone_number)
+            score = calculate_score(answers)
+            # אם יש לך דרך לקבל את שם המשתתף, שנה את השורה הבאה בהתאם
+            participant_name = phone_number  # או get_user_name_by_phone(phone_number)
+            participant_scores.append({'name': participant_name, 'points': score})
+
+        # מיון המשתתפים לפי ניקוד יורד
+        top_participants = sorted(participant_scores, key=lambda x: x['points'], reverse=True)[:limit]
+
+        return {'top_participants': top_participants}, 200
+
+    except Exception as e:
+        print("Error in get_top_participants:", str(e))
+        return {'error': 'שגיאה בשרת.'}, 500
 
