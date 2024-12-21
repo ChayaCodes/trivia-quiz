@@ -10,6 +10,7 @@ The Trivia Quiz Application is an interactive platform that allows users to part
 - **Scoring System**: Tracks participant scores and provides quiz statistics.
 - **Responsive Design**: Accessible on various devices with a user-friendly interface.
 
+
 ## Project Structure
 ```
 /client
@@ -37,7 +38,6 @@ The Trivia Quiz Application is an interactive platform that allows users to part
     The client will run at [http://localhost:3000](http://localhost:3000).
 
 ### Server Setup
-# The server side still dont working! you need only to run the client side!
 
 1. Navigate to the server directory:
     ```sh
@@ -63,22 +63,73 @@ The Trivia Quiz Application is an interactive platform that allows users to part
     ```sh
     python app.py
     ```
+## JWT Authentication
+
+The application uses JWT for authentication. To handle token refreshing seamlessly, an Axios instance with interceptors is configured.
+
+
+### **Axios Setup**
+to use API endpoints that require authentication, you need to use the `api` instance. Here's how you can use it:
+
+```javascript
+// דוגמה לשימוש בקובץ React
+import React from 'react';
+import api from '../api/axiosSetup';
+
+function ExampleComponent() {
+    const fetchData = async () => {
+        try {
+            const response = await api.get('/some/protected/endpoint');
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    React.useEffect(() => {
+        fetchData();
+    }, []);
+
+    return (
+        <div>
+            <h1>Example Component</h1>
+        </div>
+    );
+}
+
+export default ExampleComponent;
+```
 
 ## API Endpoints
 
 ### Authentication
-- **Register User**: `POST /auth/register`
-- **Login User**: `POST /auth/login`
+- **Register User**: `POST /auth/register`  
+  **Fields**: `username`, `password`, `email`
+  
+- **Login User**: `POST /auth/login`  
+  **Fields**: `email`, `password`
+  
 - **Logout User**: `POST /auth/logout`
+
 - **Get Current User**: `GET /auth/me`
 
 ### Quiz Management
 - **Create Quiz**: `POST /admin/create_quiz`
+**Fields**: `title`, `questions` (array of objects with `question`, `answers` (array of strings), `correct_answer`)
+
 - **Edit Quiz**: `PUT /admin/edit_quiz/<quiz_id>`
+**Fields**: `title`, `questions` (array of objects with `question`, `answers` (array of strings), `correct_answer`)
+
 - **Activate Quiz**: `POST /admin/activate_quiz/<quiz_id>`
+
 - **View Quizzes**: `GET /admin/view_quizzes`
+
 - **Quiz Statistics**: `GET /admin/quiz_statistics/<quiz_id>`
 
+- **Get Current Active Question**: `GET /admin/get_current_question/<quiz_id>`  
+
+- **Go To Next Question**: `POST /admin/go_to_next_question/<quiz_id>`
+  
 ### Quiz Service - Phone Interface
 The phone interface utilizes the Azran interface. You can find the documentation here: [Azran Interface Documentation](https://www.hazran.online/FreeArena/content/instructions).
 

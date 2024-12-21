@@ -36,50 +36,33 @@
   box-shadow: 0 8px 16px rgba(0, 255, 234, 0.3);
 }
 
-.activate-button {
-  background-color: #e94560;
+button {
   border: none;
-  padding: 10px 20px;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 16px;
-  font-family: "CustomFont", sans-serif;
-  transition: background-color 0.3s, transform 0.3s;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  padding: 0;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  cursor: pointer;
 }
 
-.activate-button:hover {
-  background-color: #ffffff;
-  color: #e94560;
-  transform: scale(1.05);
+.activate-button {
+  background-color: #e94560;
+  padding: 0;
 }
 
 .edit-button {
   background-color: #00ffea;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  font-family: "CustomFont", sans-serif;
-  text-align: center;
 }
 
-.edit-button:hover {
+.delete-button {
+  background-color: #e94560;
+  padding: 0;
+}
+
+button:hover {
   background-color: #ffffff;
-  color: #00ffea;
-  transform: scale(1.05);
 }
 
 .buttons {
@@ -91,4 +74,30 @@
   color: #00ffea;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
