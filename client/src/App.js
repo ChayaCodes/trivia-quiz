@@ -8,6 +8,8 @@ import Register from "./pages/RegisterForm/RegisterForm";
 import CreateQuiz from "./pages/CreateQuiz/CreateQuiz";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import Quizzes from "./pages/Quizzes/Quizzes";
+// import Container from "./components/Container/Container";
+import LeaderPlayers from './pages/LeaderPlayer/LeaderPlayer';
 import Layout from "./components/Layout/Layout";
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
           <Route path="/create-quiz" element={<CreateQuiz />} />
           <Route path="/quiz/:quizId" element={<QuizPage />} /> 
           <Route path="/quizzes" element={<Quizzes />} />
+          <Route path="/leader-player" element={<LeaderPlayers />} />
         </Routes>
       </Layout>
     </Router>
