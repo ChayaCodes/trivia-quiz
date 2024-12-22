@@ -1,0 +1,121 @@
+.animated {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+
+  }
+  
+ .animated h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .letter {
+    display: inline-block;
+    font-size: 4rem; 
+    color: #f8f8f8;
+    margin: 0 5px;
+    opacity: 0;
+    transform: translateY(100px); /* מתחיל מחוץ למיקום הרגיל */
+    filter: blur(10px);
+    animation: animateLetter 13s infinite; /* האנימציה אורכת 13 שניות לכל מחזור */
+    animation-timing-function: ease-in-out;
+  }
+  
+  .letter:nth-child(odd) {
+    animation-delay: 0.2s;
+  }
+  
+  .letter:nth-child(even) {
+    animation-delay: 0.5s;
+  }
+  
+  @keyframes animateLetter {
+    0% {
+      opacity: 0;
+      transform: translateY(100px); /* מתחיל מלמטה */
+      filter: blur(10px);
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(0); /* מיקום רגיל */
+      filter: blur(0);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(0); /* נשאר במקום */
+      filter: blur(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0); /* נשאר במקום */
+      filter: blur(0);
+    }
+    80% {
+      opacity: 0;
+      transform: translateY(100px); /* יורד */
+      filter: blur(10px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100px); /* ממשיך לרדת */
+      filter: blur(10px);
+    }
+  }
+  .animated {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+
+  }
+  
+ .animated h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .letter {
+    display: inline-block;
+    font-size: 4rem; 
+    color: #f8f8f8;
+    margin: 0 5px;
+    opacity: 0;
+    transform: translateY(100px); /* מתחיל מחוץ למיקום הרגיל */
+    filter: blur(10px);
+    animation: animateLetter 13s infinite; /* האנימציה אורכת 13 שניות לכל מחזור */
+    animation-timing-function: ease-in-out;
+  }
+  
+  .letter:nth-child(odd) {
+    animation-delay: 0.2s;
+  }
+  
+  .letter:nth-child(even) {
+    animation-delay: 0.5s;
+  }
+  
+  @keyframes animateLetterForWinner {
+    0% {
+      opacity: 0;
+      transform: translateY(100px); /* מתחיל מלמטה */
+      filter: blur(10px);
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(0); /* מיקום רגיל */
+      filter: blur(0);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(0); /* נשאר במקום */
+      filter: blur(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0); /* נשאר במקום */
+      filter: blur(0);
+    }}
