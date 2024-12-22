@@ -28,7 +28,7 @@ const ConfettiComponent = () => {
         width={dimensions.width}
         height={dimensions.height}
         numberOfPieces={200}
-        recycle={true} // אם רוצים שהקונפטי לא יחזור ויתפוגג אחרי זמן מה
+        recycle={true} 
       />
     </div>
   );
