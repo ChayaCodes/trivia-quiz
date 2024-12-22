@@ -10,6 +10,8 @@ import CreateQuiz from "./pages/CreateQuiz/CreateQuiz";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import Quizzes from "./pages/Quizzes/Quizzes";
 import Container from "./components/Container/Container";
+import UpdateQuiz from "./components/UpdateQuiz/UpdateQuiz";
+import CreateQuizR from "./components/CreateQuiz/CreateQuizR";
 
 function App() {
   const [userName, setUserName] = useState(null);
@@ -21,6 +23,8 @@ function App() {
           <Route path="/" element={<Home userName={userName} setUserName={setUserName} />} />
           <Route path="/login" element={<Login setUserName={setUserName} />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/create-quiz-R" element={<CreateQuizR />} />
+          <Route path="/update-quiz" element={<UpdateQuiz />} />
           <Route path="/create-quiz" element={<CreateQuiz />} />
           <Route path="/quiz" element={<QuizPage userName={userName} />} />
           <Route path="/quizzes" element={<Quizzes />} />
