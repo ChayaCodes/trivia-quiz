@@ -1,0 +1,139 @@
+.bodyWinner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* מרכז את התוכן אנכית */
+  align-items: center; /* מרכז את התוכן באופן אופקי */
+  background-image: url('../../assets/picture/winners/win.png'); /* נתיב לתמונה */
+  background-size: cover;
+  height: 100vh; /* גובה מלא של המסך */
+  background-position: center;
+  margin: 0;
+}
+
+.winAnimation {
+  text-align: center; /* ממקם את הטקסט במרכז */
+  position: fixed; /* מיקום קבוע בראש העמוד */
+  top: 0; /* ממקם את האלמנט בחלק העליון של הדף */
+  z-index: 10; /* מבטיח שהכיתוב יהיה מעל שאר האלמנטים */
+  color: white; /* צבע הטקסט */
+  padding: 10px 0; /* רווחים למעלה ולמטה */
+ 
+}
+
+/* ==================================================================== */
+
+.victoryTrophy3 {
+  width: 500px;  /* קובע את הרוחב של התמונה */
+  height: 400px;  /* קובע את הגובה של התמונה */
+  margin-top: 20px; /* רווח קטן מעל התמונה */
+  position: absolute; /* מאפשר למקם את התמונה באופן מוחלט */
+  top: 130px; /* מיקום התמונה מהחלק העליון של הדף */
+  left: 58%; /* ממקם את התמונה במרכז רוחב הדף */
+  transform: translateX(-50%); /* דואג שהתמונה תהיה בדיוק במרכז */
+  animation: slideBackAndForth 12s ease-in-out infinite;
+}
+.victoryTrophy2 {
+  width: 500px;  /* קובע את הרוחב של התמונה */
+  height: 400px;  /* קובע את הגובה של התמונה */
+  margin-top: 20px; /* רווח קטן מעל התמונה */
+  position: absolute; /* מאפשר למקם את התמונה באופן מוחלט */
+  top: 90px; /* מיקום התמונה מהחלק העליון של הדף */
+  left: 10%; /* ממקם את התמונה במרכז רוחב הדף */
+  transform: translateX(-50%); /* דואג שהתמונה תהיה בדיוק במרכז */
+  animation: slideBackAndForth 10s ease-in-out infinite;
+}
+.victoryTrophy1 {
+  width: 600px;  /* קובע את הרוחב של התמונה */
+  height: 500px;  /* קובע את הגובה של התמונה */
+  margin-top: 20px; /* רווח קטן מעל התמונה */
+  position: absolute; /* מאפשר למקם את התמונה באופן מוחלט */
+  bottom: 200px;
+  left: 30%; /* ממקם את התמונה במרכז רוחב הדף */
+  transform: translateX(-50%); /* דואג שהתמונה תהיה בדיוק במרכז */
+  animation: slideBackAndForth 8s ease-in-out infinite; /* תנועה אחורה וקדימה לאט מאוד */
+}
+
+@keyframes slideBackAndForth {
+  0% {
+    transform: translateX(0px); /* תזוזה קלה של 5 פיקסלים שמאלה */
+  }
+  50% {
+    transform: translateX(10px); /* תזוזה קלה של 5 פיקסלים ימינה */
+  }
+  100% {
+    transform: translateX(0px); /* חזרה ל-5 פיקסלים שמאלה */
+  }
+}
+
+.victoryTrophy1,
+.victoryTrophy2,
+.victoryTrophy3 {
+  transition: transform 0.5s ease; /* מעבר חלק */
+  animation: slideBackAndForth 8s ease-in-out infinite; /* תנועה אחורה וקדימה לאט מאוד */
+  will-change: transform; /* שיפור ביצועים על ידי הכנה של האלמנט לאנימציה */
+}
+
+/* =================================================================================== */
+.visible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  position: fixed; /* מיקום קבוע בראש העמוד */
+  top: 100px; /* מרווח של 100px מהחלק העליון */
+  font-size: 6rem; 
+  color: #f8f8f8;
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(100px);
+  animation: fadeInUp 6s ease-out forwards; 
+  animation-iteration-count: 1;
+  margin: 0 5px; /* רווח בין האלמנטים */
+  gap: 250px; /* רווח של 20px בין כל אלמנט לאלמנט */
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0); 
+  }
+}
+
+/* ======================================================================= */
+
+
+.winnerscontainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+    display: flex; /* הצגת האלמנטים באופק */
+    justify-content: center; /* מרכז את האלמנטים במרכז */
+    direction: rtl; /* הצגת הטקסטים מימין לשמאל */
+    align-items: center; /* מרכז את האלמנטים אנכית */
+    position: fixed; /* מיקום קבוע בראש העמוד */
+    top: 110px; /* מרווח של 100px מהחלק העליון */
+    left: 50%; /* ממקם את האלמנט במרכז האופקי */
+    transform: translateX(-50%); /* מבטיח שהאלמנט יהיה ממורכז לחלוטין */
+    z-index: 10; /* מבטיח שהכיתוב יהיה מעל שאר האלמנטים */
+    font-size: 3rem; /* גודל טקסט */
+    color: #f8f8f8; /* צבע טקסט */
+    font-weight: bold; /* מדגיש את הטקסט */
+    margin: 0 5px; /* רווח בין האלמנטים */
+    gap: 100px; /* רווח של 20px בין כל אלמנט לאלמנט */
+    white-space: nowrap; /* מונע שbreak לטקסט לשורה חדשה */
+  }
+
+
+.winner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  text-align: center;
+}
