@@ -5,6 +5,8 @@ import QuizQuestion from '../../components/QuizQuestion/QuizQuestion';
 import api from '../../api/axiosSetup'; 
 import './QuizPage.css'; // אם יש סגנונות מותאמים אישית
 import WinnerPage from '../WinnerPage/WinnerPage';
+import { useNavigate } from 'react-router-dom';
+
 
 const QuizPage = () => {
   const { quizId } = useParams(); // שליפת ה-ID של החידון מהכתובת
@@ -12,6 +14,7 @@ const QuizPage = () => {
   const [quizStatus, setQuizStatus] = useState('');
   const [loading, setLoading] = useState(true);
   const [next, setNext] = useState(false);
+  const nav=useNavigate();
 
   useEffect(() => {
     fetchQuizData();
@@ -45,6 +48,7 @@ const QuizPage = () => {
   };
 
   const handleShowStatistics = async () => {
+    nav('/leader-player');
 
   };
 

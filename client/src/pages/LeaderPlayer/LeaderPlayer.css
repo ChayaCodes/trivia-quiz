@@ -34,6 +34,32 @@
   gap: 10px;
   
 }
+@keyframes rainbowText {
+  0% {
+    color: #ff0000; /* אדום */
+  }
+  25% {
+    color: #ffff00; /* צהוב */
+  }
+  50% {
+    color: #00ff00; /* ירוק */
+  }
+  75% {
+    color: #0000ff; /* כחול */
+  }
+  100% {
+    color: #ff0000; /* חזרה לאדום */
+  }
+}
+
+.banner-text {
+  animation: rainbowText 10s infinite; /* אפקט צבעים מתחלפים כל 10 שניות */
+  font-size: 36px;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(26, 96, 104, 255), /* הילה בצבע */
+               0 0 25px rgba(26, 96, 104, 255), /* הילה נוספת */
+               0 0 5px rgba(26, 96, 104, 255); /* הילה נוספת */
+}
 
 .banner-icon {
   width: 40px;
@@ -112,23 +138,7 @@
 }
 
 
-/* כוכב בחלק העליון הימני של הכרטיס */
-.star {
-  position: absolute;
-  top: -20px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
 
-/* מספר המקום */
-.star-number {
-  font-size: 1.2rem; /* גודל טקסט מותאם */
-  font-weight: bold;
-  margin-left: 5px;
-}
 
 /* טקסט נקודות */
 .points {
