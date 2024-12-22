@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // ייבוא useParams מ-react-router-dom לקבלת פרמטרים מהכתובת
 import QuizQuestion from '../../components/QuizQuestion/QuizQuestion';
-import WinnersPage from '../../components/WinnersPage/WinnersPage';
+// import WinnersPage from '../../components/WinnersPage/WinnersPage';
 import api from '../../api/axiosSetup'; 
 import './QuizPage.css'; // אם יש סגנונות מותאמים אישית
+import WinnerPage from '../WinnerPage/WinnerPage';
 
 const QuizPage = () => {
   const { quizId } = useParams(); // שליפת ה-ID של החידון מהכתובת
@@ -60,7 +61,8 @@ const QuizPage = () => {
 
   if (quizStatus === 'completed') {
     return (
-      <WinnersPage winners={null} onRestart={handleRestartQuiz} />
+      <WinnerPage winners={null} onRestart={handleRestartQuiz}  />
+      // <WinnersPage winners={null} onRestart={handleRestartQuiz} />
     );
   }
   

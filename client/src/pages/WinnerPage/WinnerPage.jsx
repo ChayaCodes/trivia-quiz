@@ -8,7 +8,7 @@ import victoryTrophy2 from '../../assets/picture/winners/3.png'
 import AnimatedText from "./AnimatedText";
 import ConfettiComponent from "./Confetti";
 
-const WinnerPage = () => {
+const WinnerPage = ({ winners, onRestart }) => {
     const win1 = "aaa"
     const win2 = "bbb"
     const win3 = "ccc"
@@ -52,17 +52,20 @@ const WinnerPage = () => {
         <div className="winnerscontainer">
             <div className="winner">
                 <h3>במקום שלישי:</h3>
-                {winner3 && <h2 className="visible">{win3}</h2>}
+                {winner3 && <h2 className="visible">{winners[2].name}</h2>}
             </div>
             <div className="winner">
                 <h3>במקום ראשון:</h3>
-                {winner1 && <h2 className="visible">{win1}</h2>}
+                {winner1 && <h2 className="visible">{winners[0].name}</h2>}
             </div>
             <div className="winner">
                 <h3>במקום שני:</h3>
-                {winner2 && <h2 className="visible">{win2}</h2>}
+                {winner2 && <h2 className="visible">{winners[1].name}</h2>}
             </div>
         </div>
+        <button onClick={onRestart} className="restart-button">
+        הפעל מחדש את החידון
+      </button>
     </div>
 
     );
