@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from "./pages/HomePage/HomePage";
@@ -9,23 +8,24 @@ import Register from "./pages/RegisterForm/RegisterForm";
 import CreateQuiz from "./pages/CreateQuiz/CreateQuiz";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import Quizzes from "./pages/Quizzes/Quizzes";
-import Container from "./components/Container/Container";
+// import Container from "./components/Container/Container";
+import LeaderPlayers from './pages/LeaderPlayer/LeaderPlayer';
+import Layout from "./components/Layout/Layout";
 
 function App() {
-  const [userName, setUserName] = useState(null);
-
   return (
     <Router>
-      <Container>
+      <Layout>
         <Routes>
-          <Route path="/" element={<Home userName={userName} setUserName={setUserName} />} />
-          <Route path="/login" element={<Login setUserName={setUserName} />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/create-quiz" element={<CreateQuiz />} />
-          <Route path="/quiz" element={<QuizPage userName={userName} />} />
+          <Route path="/quiz/:quizId" element={<QuizPage />} /> 
           <Route path="/quizzes" element={<Quizzes />} />
+          <Route path="/leader-player" element={<LeaderPlayers />} />
         </Routes>
-      </Container>
+      </Layout>
     </Router>
   );
 }

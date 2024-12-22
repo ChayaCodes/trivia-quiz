@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.2.1",
+    "@mui/material": "^6.2.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.2.1",
@@ -10,13 +14,23 @@
     "gsap": "^3.12.5",
     "jquery": "^3.7.1",
     "lettering": "^0.4.1",
+    "assert": "^2.1.0",
+    "axios": "^1.7.9",
+    "axios-auth-refresh": "^3.3.6",
+    "browserify-zlib": "^0.2.0",
+    "globals": "^15.13.0",
+    "https-browserify": "^1.0.0",
     "react": "^18.0.0",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.0.0",
     "react-fireworks": "^1.0.4",
     "react-router-dom": "^7.0.2",
     "react-scripts": "^5.0.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.4",
     "use-sound": "^4.0.3",
+    "util": "^0.12.5",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -44,6 +58,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "postcss-svgo": "^7.0.1",
     "sass": "^1.83.0"
   }
 }
