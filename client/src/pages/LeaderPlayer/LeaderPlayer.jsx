@@ -2,30 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import "./LeaderPlayer.css";
 
-// נתיב לתמונות
 import goldImage from "../../images/gold.png";
 import silverImage from "../../images/silver.png";
 import copperImage from "../../images/copper.png";
-// import winner from "../../../images/winner.png";
+import api from "../../api/axiosSetup";
+import { useParams } from "react-router-dom";
 
-// דטה דמה לשמות וניקוד של המשתתפים
-const mockData = [
-  { name: "player 1", points: 50 },
-  { name: "player 2", points: 45 },
-  { name: "player 3", points: 40 },
-  { name: "player 4", points: 35 },
-  { name: "player 5", points: 30 },
-  { name: "player 6", points: 25 },
-  { name: "player 7", points: 20 },
-  { name: "player 8", points: 15 },
-  { name: "player 9", points: 10 },
-  { name: "player 10", points: 5 }
-];
+
 
 const PlayerCard = ({ position, name, points, borderColor, starColor, isMainCard, isSecondaryCard, isTextVisible }) => {
   const isTopThree = position <= 3;
 
-  // הגדרת התמונה לפי המקום
   const medalImage =
     position === 1 ? goldImage : position === 2 ? silverImage : position === 3 ? copperImage : null;
 
@@ -74,20 +61,26 @@ const PlayerCard = ({ position, name, points, borderColor, starColor, isMainCard
 const TopPlayers = () => {
   const [visibleText, setVisibleText] = useState([]);
   const [visibleCards, setVisibleCards] = useState([]);
+  const [mockData, setMockData] = useState([]);
+  const {quizId} = useParams();
 
   useEffect(() => {
-    // הצגת מקומות 1-3 עם השהיה של שניה
+    const data = api.get(`/admin/top_participants/${quizId}`);
+    console.log(data);
+    setMockData(data);
+  }, []);
+
+  useEffect(() => {
     setTimeout(() => {
       setVisibleText([3]);
       setTimeout(() => {
         setVisibleText([2, 3]);
         setTimeout(() => {
           setVisibleText([1, 2, 3]);
-        }, 1200); // הצגת טקסט של מקום 1 אחרי עוד שניה
-      }, 1200); // הצגת טקסט של מקום 2 אחרי שניה
-    }, 1000); // השהיה להצגת טקסט של מקום 3
+        }, 1200);
+      }, 1200); 
+    }, 1000);
 
-    // הצגת כרטיסים ממקום 4 עד 12 לאחר הצגת מקומות 1-3
     setTimeout(() => {
       const restPositions = Array.from({ length: 7 }, (_, i) => i + 4);
       restPositions.forEach((position, index) => {
@@ -95,7 +88,7 @@ const TopPlayers = () => {
           setVisibleCards((prev) => [...prev, position]);
         }, index * 800);
       });
-    }, 4500); // אחרי הצגת כל המקומות הראשונים, אז יתחילו להופיע המקומות 4-12
+    }, 4500); 
   }, []);
 
   return (
@@ -110,7 +103,6 @@ const TopPlayers = () => {
       </Box>
 
       <Box className="cards-container" style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "20px" }}>
-        {/* מקום שלישי */}
         <PlayerCard
           position={3}
           name={mockData[2].name}
@@ -121,7 +113,6 @@ const TopPlayers = () => {
           isSecondaryCard={true}
           isTextVisible={visibleText.includes(3)}
         />
-        {/* מקום ראשון */}
         <PlayerCard
           position={1}
           name={mockData[0].name}
@@ -132,7 +123,6 @@ const TopPlayers = () => {
           isSecondaryCard={false}
           isTextVisible={visibleText.includes(1)}
         />
-        {/* מקום שני */}
         <PlayerCard
           position={2}
           name={mockData[1].name}
@@ -145,7 +135,6 @@ const TopPlayers = () => {
         />
       </Box>
 
-      {/* כרטיסים ממקום 4 עד 12 */}
       <Box className="cards-container" style={{ display: "flex", flexWrap: "wrap", gap: "20px", marginTop: "20px" }}>
         {visibleCards.map((position) => (
           <PlayerCard
