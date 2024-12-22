@@ -141,6 +141,19 @@ def get_user_by_email(email):
     finally:
         data_conn.close()
 
+def get_user_by_username(name):
+    try:
+        data_conn = sqlite3.connect(DATABASE_NAME)
+        data_conn.row_factory = sqlite3.Row
+        data_cursor = data_conn.cursor()
+        data_cursor.execute("SELECT * FROM users WHERE name = ?", (name,))
+        row = data_cursor.fetchone()
+        if row:
+            return dict(row)
+        return None
+    finally:
+        data_conn.close()
+
 def update_user(id, name=None, email=None, password=None):
     try:
         data_conn = sqlite3.connect(DATABASE_NAME)
@@ -170,15 +183,22 @@ def create_quiz(id, name, user_id):
         data_conn = sqlite3.connect(DATABASE_NAME)
         data_cursor = data_conn.cursor()
         data_cursor.execute("""
-            INSERT INTO quizzes (id, name, user_id, status) VALUES (?, ?, ?, 'active')
+            INSERT INTO quizzes (id, name, user_id, status) VALUES (?, ?, ?, 'inactive')
         """, (id, name, user_id))
         data_conn.commit()
     finally:
         data_conn.close()
 
-def get_quiz(id):
+def get_quiz(id: str) -> dict:
+    """
+    Retrieves quiz details by ID.
+
+    :param id: מזהה החידון.
+    :return: מילון עם פרטי החידון או None אם לא נמצא.
+    """
+    data_conn = None
     try:
-        data_conn = sqlite3.connect(DATABASE_NAME)
+        data_conn = sqlite3.connect(os.getenv('DATABASE_NAME'))
         data_conn.row_factory = sqlite3.Row
         data_cursor = data_conn.cursor()
         data_cursor.execute("SELECT * FROM quizzes WHERE id = ?", (id,))
@@ -186,26 +206,42 @@ def get_quiz(id):
         if row:
             return dict(row)
         return None
+    except sqlite3.Error as e:
+        return {}
     finally:
-        data_conn.close()
+        if data_conn:
+            data_conn.close()
+
 
 def update_quiz(id, name=None, user_id=None, status=None, current_question_id=None, question_start_time=None):
+    """
+    Updates quiz details.
+
+    :param id: מזהה החידון.
+    :param name: שם החידון (אופציונלי).
+    :param user_id: מזהה המשתמש (אופציונלי).
+    :param status: סטטוס החידון (אופציונלי).
+    :param current_question_id: מזהה השאלה הנוכחית (אופציונלי).
+    :param question_start_time: זמן התחלת השאלה (אופציונלי).
+    """
     try:
-        data_conn = sqlite3.connect(DATABASE_NAME)
-        data_cursor = data_conn.cursor()
-        if name:
-            data_cursor.execute("UPDATE quizzes SET name = ? WHERE id = ?", (name, id))
-        if user_id:
-            data_cursor.execute("UPDATE quizzes SET user_id = ? WHERE id = ?", (user_id, id))
-        if status:
-            data_cursor.execute("UPDATE quizzes SET status = ? WHERE id = ?", (status, id))
-        if current_question_id:
-            data_cursor.execute("UPDATE quizzes SET current_question_id = ? WHERE id = ?", (current_question_id, id))
-        if question_start_time is not None:
-            data_cursor.execute("UPDATE quizzes SET question_start_time = ? WHERE id = ?", (question_start_time, id))
-        data_conn.commit()
-    finally:
-        data_conn.close()
+        with sqlite3.connect(DATABASE_NAME) as data_conn:
+            data_cursor = data_conn.cursor()
+            if name:
+                data_cursor.execute("UPDATE quizzes SET name = ? WHERE id = ?", (name, id))
+            if user_id:
+                data_cursor.execute("UPDATE quizzes SET user_id = ? WHERE id = ?", (user_id, id))
+            if status:
+                data_cursor.execute("UPDATE quizzes SET status = ? WHERE id = ?", (status, id))
+            if current_question_id:
+                data_cursor.execute("UPDATE quizzes SET current_question_id = ? WHERE id = ?", (current_question_id, id))
+            if question_start_time is not None:
+                data_cursor.execute("UPDATE quizzes SET question_start_time = ? WHERE id = ?", (question_start_time, id))
+            data_conn.commit()
+    except sqlite3.Error as e:
+        logger.error(f"שגיאה במסד הנתונים במהלך עדכון החידון: {e}")
+    except Exception as e:
+        logger.error(f"שגיאה בלתי צפויה במהלך עדכון החידון: {e}")
 
 def delete_quiz(id):
     try:
@@ -240,6 +276,30 @@ def get_question(id):
         return None
     finally:
         data_conn.close()
+
+def get_questions(quiz_id: str) -> list[dict]:
+    """
+    Retrieves all questions for a given quiz.
+
+    :param quiz_id: מזהה החידון.
+    :return: רשימת שאלות.
+    """
+    try:
+        with sqlite3.connect(DATABASE_NAME) as data_conn:
+            data_conn.row_factory = sqlite3.Row
+            data_cursor = data_conn.cursor()
+            data_cursor.execute("SELECT * FROM questions WHERE quiz_id = ?", (quiz_id,))
+            rows = data_cursor.fetchall()
+            if rows:
+                return [dict(row) for row in rows]  # תיקון הלולאה
+            return []
+    except sqlite3.Error as e:
+        return []
+    except Exception as e:
+        return []
+    finally:
+        if data_conn:
+            data_conn.close()
 
 def update_question(id, quiz_id=None, question_text=None):
     try:
@@ -365,3 +425,46 @@ def delete_participant_answer(participant_phone, question_id):
         data_conn.commit()
     finally:
         data_conn.close()
+
+
+def get_current_question(quiz_id):
+    try:
+        data_conn = sqlite3.connect(DATABASE_NAME)
+        data_cursor = data_conn.cursor()
+        data_cursor.execute("SELECT current_question_id FROM quizzes WHERE id = ?", (quiz_id,))
+        row = data_cursor.fetchone()
+        if row:
+            return row[0]
+        return None
+    finally:
+        data_conn.close()
+
+
+def get_quizzes_by_user(user_id):
+    try:
+        data_conn = sqlite3.connect(DATABASE_NAME)
+        data_conn.row_factory = sqlite3.Row
+        data_cursor = data_conn.cursor()
+        data_cursor.execute("SELECT name, id FROM quizzes WHERE user_id = ?", (user_id,))
+        rows = data_cursor.fetchall()
+        return [dict(row) for row in rows]
+    finally:
+        data_conn.close()
+
+def get_all_participants(quiz_id):
+    """
+    Retrieves all participants for a given quiz.
+    """
+    try:
+        conn = sqlite3.connect(DATABASE_NAME)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM participants WHERE quiz_id = ?", (quiz_id,))
+        rows = cursor.fetchall()
+        participants = [dict(row) for row in rows]
+        return participants
+    except sqlite3.Error as e:
+        print(f"Database error in get_all_participants: {e}")
+        return []
+    finally:
+        conn.close()
