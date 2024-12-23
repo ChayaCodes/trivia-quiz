@@ -27,8 +27,7 @@ def register_user(username, email, password):
     :param password: User's password
     :return: Success or error message
     """
-    existing_user = get_user_by_email(email)
-    if existing_user:
+    if existing_user := get_user_by_email(email):
         return {'error': 'User already exists.'}, 400
 
     user_id = generate_unique_user_id()
@@ -71,8 +70,7 @@ def generate_access_token(user_id):
         'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRATION_MINUTES),
         'type': 'access'
     }
-    token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
-    return token
+    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
 def generate_refresh_token(user_id):
     """
@@ -86,8 +84,7 @@ def generate_refresh_token(user_id):
         'exp': datetime.datetime.utcnow() + datetime.timedelta(days=REFRESH_TOKEN_EXPIRATION_DAYS),
         'type': 'refresh'
     }
-    token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
-    return token
+    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
 def decode_token(token):
     """
@@ -167,9 +164,6 @@ def get_user_id_from_token(token):
     :return: User ID or None
     """
     decoded, error = decode_token(token)
-    if error:
-        return None
-
-    return decoded.get('user_id')
+    return None if error else decoded.get('user_id')
 
 

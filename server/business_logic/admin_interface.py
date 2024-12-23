@@ -30,31 +30,42 @@ def create_new_quiz(title, user_id, questions):
     """
     Creates a new quiz with questions and single correct answer.
     """
+    if not all([title, user_id, questions]):
+        return {'error': 'Title, user ID, and questions are required.'}, 400
+
     try:
         quiz_id = generate_unique_quiz_id()
         create_quiz(quiz_id, title, user_id)
-        for question in questions:
-            q_text = question.get('question')
-            answers = question.get('answers')
-            correct_option = question.get('correctAnswer')
-            if not q_text:
-                return {'error': 'Question text is required.'}, 400
-            if not answers:
-                return {'error': 'Answers are required for each question.'}, 400
-            if not correct_option:
-                return {'error': 'Correct answer is required for each question.'}, 400
-            
-            question_id = generate_unique_question_id()
-            create_question(question_id, quiz_id, q_text)
-            for idx, answer_text in enumerate(answers, start=1):
-                is_correct = (idx == correct_option)
-                create_option(question_id, answer_text, answer_text == correct_option)
-        
-
-        return {'message': 'חידון נוצר בהצלחה.', 'quiz_id': quiz_id}, 201
+        add_questions_to_quiz(quiz_id, questions)
+        return {'message': 'Quiz created successfully.', 'quiz_id': quiz_id}, 201
     except Exception as e:
-        print("Error in create_new_quiz:", str(e))
-        return {'error': 'שגיאה ביצירת החידון.'}, 500
+        print("Error in create_new_quiz:", e)
+        return {'error': 'Error creating quiz.'}, 500
+
+
+def add_questions_to_quiz(quiz_id, questions):
+    """
+    Adds questions to a quiz.
+    """
+    for question in questions:
+        q_text = question.get('question')
+        answers = question.get('answers')
+        correct_option = question.get('correctAnswer')
+
+        if not all([q_text, answers, correct_option is not None]):
+            raise ValueError('Each question must have text, answers, and a correct answer.')
+
+        question_id = generate_unique_question_id()
+        create_question(question_id, quiz_id, q_text)
+        add_options_to_question(question_id, answers, correct_option)
+
+
+def add_options_to_question(question_id, answers, correct_option):
+    """
+    Adds options to a question.
+    """
+    for idx, answer_text in enumerate(answers, start=1):
+        create_option(question_id, answer_text, idx == correct_option)
 
 
 def view_quizzes(user_id):
@@ -125,17 +136,29 @@ def go_to_next_question(quiz_id):
     quiz = get_quiz(quiz_id)
     if not quiz:
         return {'error': 'Quiz not found.', 'status': 'inactive'}, 404
+
     quiz_questions = get_questions(quiz_id)
     if not quiz_questions:
         return {'error': 'No questions found for this quiz.', 'status': 'inactive'}, 404
+
     current_question_id = quiz.get('current_question_id')
     if not current_question_id:
         return {'error': 'No active question for this quiz.', 'status': 'inactive'}, 400
+
+    return move_to_next_question(quiz_id, quiz_questions, current_question_id)
+
+
+def move_to_next_question(quiz_id, quiz_questions, current_question_id):
+    """
+    Helper function to move to the next question.
+    """
     question_ids = [q.get('id') for q in quiz_questions]
     current_question_index = question_ids.index(current_question_id)
+
     if current_question_index == len(question_ids) - 1:
         update_quiz(quiz_id, status='completed')
         return {'message': 'Quiz completed.', 'status': 'completed'}, 200
+
     next_question_id = question_ids[current_question_index + 1]
     update_quiz(quiz_id, current_question_id=next_question_id, question_start_time=int(time.time()))
     return {'message': 'Moved to next question.', 'status': 'active'}, 200
@@ -170,7 +193,7 @@ def get_quiz_statistics(quiz_id: str, user_id: str) -> tuple:
         return {'error': 'שגיאה במסד הנתונים.'}, 500
 
     except Exception as e:
-        print("Error in get_quiz_statistics:", str(e))
+        print("Error in get_quiz_statistics:", e)
         return {'error': 'שגיאה בשרת.'}, 500
     
 
@@ -258,6 +281,6 @@ def get_top_participants(quiz_id, limit=10):
         return {'top_participants': top_participants}, 200
 
     except Exception as e:
-        print("Error in get_top_participants:", str(e))
+        print("Error in get_top_participants:", e)
         return {'error': 'שגיאה בשרת.'}, 500
 

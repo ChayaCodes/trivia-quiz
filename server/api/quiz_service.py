@@ -36,7 +36,7 @@ base_url="http://51.84.42.17/"
 service_data = {
     'manager_phone': manager_phone,
     'email': email,
-    'connection_url': base_url + "/quiz_service_service",
+    'connection_url': f"{base_url}/quiz_service_service",
     'service_name': 'מערכת חידון קליקרים',
     'brief_description': 'מערכת המאפשרת להשתתף בחידון קליקרים בצורה אינטראקטיבית דרך הטלפון',
     'message': 'נא הקש את קוד החידון שמופיע על המסך',
@@ -65,8 +65,7 @@ def temporary_position_service():
             stage = get_call_data('next_stage')
             if not stage:
                 stage = 'start'
-                phone_number = request.json.get('phone_number')
-                if phone_number:
+                if phone_number := request.json.get('phone_number'):
                     set_call_data("phone_number", normalize_phone_number(phone_number))
 
             return do_stage(stage)
@@ -91,8 +90,6 @@ def do_stage(stage):
     next_stage = get_call_data('next_stage')
     print(f"next_stage: {next_stage}")
 
-
-
     # אם אין next_stage, נסיים את הפונקציה
     if not next_stage:
         print(f"Error: next_stage not found for stage {stage}")
@@ -105,15 +102,8 @@ def do_stage(stage):
         return send_ending_response()
 
 
-    response = {}
-
-    # בדוק אם כל מפתח קיים לפני הוספתו ל-response
-    if 'message' in next_stage_data['object'] and callable(next_stage_data['object']['message']):
-        response['message'] = next_stage_data['object']['message']()
-    if 'number_of_digits' in next_stage_data['object']:
-        response['number_of_digits'] = next_stage_data['object']['number_of_digits']
-    if 'required_data_schema' in next_stage_data['object']:
-        response['required_data_schema'] = next_stage_data['object']['required_data_schema']
+    response = {key: value() if callable(value) else value 
+                for key, value in next_stage_data['object'].items()}
 
     return jsonify(response), 200
 
