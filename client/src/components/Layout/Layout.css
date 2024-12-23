@@ -1,3 +1,28 @@
+/* I kept the sidebar code so it can be restored if needed. */
+/* .sidebar {
+    width: 5vw;
+    height: 80vh;
+} */
+
+.content {
+     flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.footer {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    font-size: 14px;
+    font-family: 'CustomFont', sans-serif;
+  height: 20px; 
+}
+
 .layout {
   display: flex;
   flex-direction: column;
