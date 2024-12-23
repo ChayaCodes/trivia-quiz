@@ -117,5 +117,6 @@
 
 /*text, input etc. rtl*/
 *{
+    text-align: right;
     direction: rtl;
 }
