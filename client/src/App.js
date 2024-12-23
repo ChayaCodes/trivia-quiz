@@ -11,7 +11,6 @@ import LeaderPlayers from './pages/LeaderPlayer/LeaderPlayer';
 import Layout from "./components/Layout/Layout";
 import NavBar from "./components/Navbar/NavBar";
 
-
 const App = () => {
   const [userName, setUserName] = useState(null);
 
