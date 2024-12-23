@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./pages/HomePage/HomePage";
 import Login from "./pages/LoginForm/LoginForm";
@@ -8,9 +8,12 @@ import CreateQuiz from "./pages/CreateQuiz/CreateQuiz";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import Quizzes from "./pages/Quizzes/Quizzes";
 import LeaderPlayers from './pages/LeaderPlayer/LeaderPlayer';
-import Layout from "./components/Layout/Layout"
+import Layout from "./components/Layout/Layout";
 import NavBar from "./components/Navbar/NavBar";
+
+
 const App = () => {
+  const [userName, setUserName] = useState(null);
 
   return (
     <>
