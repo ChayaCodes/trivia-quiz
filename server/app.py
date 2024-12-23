@@ -11,7 +11,6 @@ dotenv.load_dotenv()
 
 app = Flask(__name__)
 
-# הגדרת CORS לאפשר גישה מהלקוח ולשימוש בקוקיז
 CORS(app, resources={
     r"/*": {
         "origins": "http://localhost:3000",
@@ -19,10 +18,8 @@ CORS(app, resources={
     }
 })
 
-# מאותחל את מסד הנתונים
 initialize_db()
 
-# רישום ה-blueprints
 app.register_blueprint(auth_api)
 app.register_blueprint(quizzes_interface_api)
 app.register_blueprint(quiz_service_api)
