@@ -5,8 +5,9 @@
 } */
 
 .content {
-    width: 100vw;
-    height: 100vh;
+     flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .footer {
@@ -19,5 +20,22 @@
     bottom: 0;
     font-size: 14px;
     font-family: 'CustomFont', sans-serif;
-    height: 20px;    
+  height: 20px; 
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
