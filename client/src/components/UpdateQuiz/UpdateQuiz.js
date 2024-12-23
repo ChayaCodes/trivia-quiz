@@ -4,7 +4,7 @@ import RandomQuiz from '../RandomQuiz/RandomQuiz'
 const UpdateQuiz = () => {
     const oldData = {
         title: 'yes',
-        questions: [{ text: '', isCorrect: false }]
+        ques: [{text: 'que',answers: [{ text: 'yap', isCorrect: false }, {text: 'hey', isCorrect: true}]} ]
     }
 
     return (

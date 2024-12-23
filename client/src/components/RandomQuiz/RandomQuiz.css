@@ -1,0 +1,44 @@
+#quiz-out {
+    width: 80vw;
+    background-color: #1a1a2e;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 20px rgba(0, 255, 234, 0.2);
+    color: #e94560;
+    font-family: 'CustomFont', sans-serif;
+    border: 2px solid white;
+}
+
+#page-title{
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    letter-spacing: 5px;
+    background-color: white;
+    width: 25vw;
+    border-radius: 50px;
+    margin: 1% auto 4%;
+}
+
+input {
+    width: 80%;
+    height: 4vh;
+    padding: 2px;
+    padding-right: 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    border: 0px solid;
+    color: #1a1a2e;
+}
+
+input:focus, input:active{
+    background-color: #e94560;
+}
+
+.box {
+    padding: 5px;
+    border: 2px solid #00ffea;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 1%;
+}

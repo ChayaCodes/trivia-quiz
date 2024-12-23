@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import './RandomQuiz.css'
+import QuizQuestion from '../QuiezComp/QuizQuestion';
 
 const RandomQuiz = ({ pageTitle, buttonCreate, data}) => {
     console.log(data);
 
     const [title, setTitle] = useState(data ? data.title : '');
-    const [questions, setQuestions] = useState(data ? data.questions : [
+    const [questions, setQuestions] = useState(data?.ques || [
         { text: '', answers: [{ text: '', isCorrect: false }] }
-    ]);
+    ]);    
 
 
     const handleTitleChange = (e) => {
@@ -15,12 +16,12 @@ const RandomQuiz = ({ pageTitle, buttonCreate, data}) => {
     }
 
     return (
-        <div>
-            <div id='quiz-title'>
+        <div id='quiz-out'>
+            <div id='page-title'>
                 {pageTitle}
             </div>
             <form>
-                <div id='quize-title'>
+                <div className='quize-title box'>
                     <label>כותרת החידון</label>
                     <input
                         type='text'
@@ -29,8 +30,8 @@ const RandomQuiz = ({ pageTitle, buttonCreate, data}) => {
                         placeholder='בחר שם חזק לחידון שלך'
                     />
                 </div>
-                <div id='quize-questions'>
-                    
+                <div className='quize-questions box'>
+                    <QuizQuestion questions={questions} setQuestions={setQuestions}/>
                 </div>
             </form>
 
