@@ -1,0 +1,342 @@
+
+.listOfPlayers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* למרכז אופקית */
+    justify-content: flex-start;  /* צמידות לחלק העליון */
+    text-align: center;  /* למרכז את הטקסט בתוך כל אלמנט */
+    padding-top: 10px; /* רווח מהחלק העליון */
+
+}
+
+.title1 {
+    text-align: center;
+    animation: colorChange 5s infinite alternate;
+    font-size: calc(1.5rem + 4vw); /* גודל גופן רספונסיבי */
+    margin: 10px;
+    line-height: 0.5; /* צמצום רווח בין השורות */
+}
+
+.title2 {
+    text-align: center;
+    color: #ff6347; /* צבע אדום */
+    font-size: calc(1.2rem + 1.5vw); /* גודל גופן רספונסיבי */
+    margin: 10px;
+    line-height: 1.2; /* צמצום רווח בין השורות */
+}
+
+.title3 {
+    text-align: center;
+    color: #32cd32; /* צבע ירוק */
+    font-size: calc(1.2rem + 1.5vw); /* גודל גופן רספונסיבי */
+    margin: 10px;
+    line-height: 1.2;
+}
+
+.title4 {
+    text-align: center;
+    color: #1e90ff; /* צבע כחול */
+    font-size: calc(1rem + 2vw); /* גודל גופן רספונסיבי */
+    margin: 10px;
+    line-height: 1;
+}
+.noPlayers{
+    color: aliceblue;
+    font-size: calc(1.2rem + 2vw); /* גודל גופן רספונסיבי */
+   margin: 28% 0 0 0 ;
+}
+@keyframes colorChange {
+    0% {
+        color: #f27660; /* אדום */
+    }
+    50% {
+        color: #32c8cd; /* ירוק */
+    }
+    100% {
+        color: #d4db43; /* כחול */
+    }
+}
+/* ============================================================== */
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* 8 עמודות באותו גודל */
+    gap: 10px; /* רווח בין התאים */
+    margin-top: 20px;
+}
+
+.player {
+    display: flex;
+    align-items: center;  /* למרכז את התוכן אנכית */
+    justify-content: center;  /* למרכז את התוכן אופקית */
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    width: 120px;
+    height: 40px; /* גובה אחיד לכל התאים */
+    border: 2px solid transparent; /* גבול ריק */
+    border-radius: 5px; /* קצוות מעוגלות */
+    font-size: 22px; /* גודל גופן אחיד */
+    transition: all 0.3s ease; /* אנימציה כשחולפים מעל התאים */
+    letter-spacing: 0.8px; 
+}
+
+.player:nth-child(9n+1) {
+    border-color: palevioletred; /* גבול אדום */
+    color: palevioletred;
+}
+
+.player:nth-child(9n+2) {
+    border-color: green; /* גבול ירוק */
+    color: green;
+}
+
+.player:nth-child(9n+3) {
+    border-color: blue; /* גבול כחול */
+    color: blue;
+}
+
+.player:nth-child(9n+4) {
+    border-color: orange; /* גבול כתום */
+    color: orange;
+}
+
+.player:nth-child(9n+5) {
+    border-color: purple; /* גבול סגול */
+    color: purple;
+}
+
+.player:nth-child(9n+6) {
+    border-color: yellow; /* גבול צהוב */
+    color: yellow;
+}
+
+.player:nth-child(9n+7) {
+    border-color: red; /* גבול ורוד */
+    color: red;
+}
+
+.player:nth-child(9n+8) {
+    border-color: cyan; /* גבול טורקיז */
+    color: cyan;
+}
+.player:nth-child(9n+9) {
+    border-color: yellowgreen; /* גבול טורקיז */
+    color: yellowgreen;
+}
+.player p {
+    margin: 0; /* ביטול רווחים פנימיים בכיתוב */
+}
+
+/* ============================================================== */
+
+/* Media Queries להקטנת מספר העמודות במסכים קטנים */
+@media (max-width: 1400px) {
+    .numbers {
+        grid-template-columns: repeat(8, 1fr); /* 6 עמודות במסכים בינוניים */
+    }
+    .player:nth-child(8n+1) {
+        border-color: palevioletred;
+        color: palevioletred;
+    }
+
+    .player:nth-child(8n+2) {
+        border-color: green;
+        color: green;
+    }
+
+    .player:nth-child(8n+3) {
+        border-color: blue;
+        color: blue;
+    }
+
+    .player:nth-child(8n+4) {
+        border-color: orange;
+        color: orange;
+    }
+
+    .player:nth-child(8n+5) {
+        border-color: purple;
+        color: purple;
+    }
+
+    .player:nth-child(8n+6) {
+        border-color: yellow;
+        color: yellow;
+    }
+    .player:nth-child(8n+7) {
+        border-color: red; /* גבול ורוד */
+        color: red;
+    }
+    
+    .player:nth-child(8n+8) {
+        border-color: cyan; /* גבול טורקיז */
+        color: cyan;
+    }
+
+}
+/* Media Queries להקטנת מספר העמודות במסכים קטנים */
+@media (max-width: 1300px) {
+    .numbers {
+        grid-template-columns: repeat(7, 1fr); /* 6 עמודות במסכים בינוניים */
+    }
+    .player:nth-child(7n+1) {
+        border-color: palevioletred;
+        color: palevioletred;
+    }
+
+    .player:nth-child(7n+2) {
+        border-color: green;
+        color: green;
+    }
+
+    .player:nth-child(7n+3) {
+        border-color: blue;
+        color: blue;
+    }
+
+    .player:nth-child(7n+4) {
+        border-color: orange;
+        color: orange;
+    }
+
+    .player:nth-child(7n+5) {
+        border-color: purple;
+        color: purple;
+    }
+
+    .player:nth-child(7n+6) {
+        border-color: yellow;
+        color: yellow;
+    }
+    .player:nth-child(7n+7) {
+        border-color: red; /* גבול ורוד */
+        color: red;
+    }
+    
+}
+/* Media Queries להקטנת מספר העמודות במסכים קטנים */
+@media (max-width: 1100px) {
+    .numbers {
+        grid-template-columns: repeat(6, 1fr); /* 6 עמודות במסכים בינוניים */
+    }
+    .player:nth-child(6n+1) {
+        border-color: red;
+        color: red;
+    }
+
+    .player:nth-child(6n+2) {
+        border-color: green;
+        color: green;
+    }
+
+    .player:nth-child(6n+3) {
+        border-color: blue;
+        color: blue;
+    }
+
+    .player:nth-child(6n+4) {
+        border-color: orange;
+        color: orange;
+    }
+
+    .player:nth-child(6n+5) {
+        border-color: purple;
+        color: purple;
+    }
+
+    .player:nth-child(6n+6) {
+        border-color: yellow;
+        color: yellow;
+    }
+}
+/* Media Queries להקטנת מספר העמודות במסכים קטנים */
+@media (max-width: 950px) {
+    .numbers {
+        grid-template-columns: repeat(5, 1fr); /* 6 עמודות במסכים בינוניים */
+    }
+    .player:nth-child(5n+1) {
+        border-color: red;
+        color: red;
+    }
+
+    .player:nth-child(5n+2) {
+        border-color: green;
+        color: green;
+    }
+
+    .player:nth-child(5n+3) {
+        border-color: blue;
+        color: blue;
+    }
+
+    .player:nth-child(5n+4) {
+        border-color: orange;
+        color: orange;
+    }
+
+    .player:nth-child(5n+5) {
+        border-color: purple;
+        color: purple;
+    }
+
+   
+}
+@media (max-width: 800px) {
+    .numbers {
+        grid-template-columns: repeat(4, 1fr); /* 4 עמודות במסכים קטנים */
+    }
+    .player:nth-child(4n+1) {
+        border-color: red;
+        color: red;
+    }
+
+    .player:nth-child(4n+2) {
+        border-color: green;
+        color: green;
+    }
+
+    .player:nth-child(4n+3) {
+        border-color: blue;
+        color: blue;
+    }
+
+    .player:nth-child(4n+4) {
+        border-color: orange;
+        color: orange;
+    }
+}
+@media (max-width: 650px) {
+    .numbers {
+        grid-template-columns: repeat(3, 1fr); /* 4 עמודות במסכים קטנים */
+    }
+    .player:nth-child(3n+1) {
+        border-color: red;
+        color: red;
+    }
+
+    .player:nth-child(3n+2) {
+        border-color: green;
+        color: green;
+    }
+
+    .player:nth-child(3n+3) {
+        border-color: blue;
+        color: blue;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .numbers {
+        grid-template-columns: repeat(2, 1fr); /* 2 עמודות במסכים קטנים מאוד */
+    }
+    .player:nth-child(2n+1) {
+        border-color: red;
+        color: red;
+    }
+
+    .player:nth-child(2n+2) {
+        border-color: green;
+        color: green;
+    }
+}
