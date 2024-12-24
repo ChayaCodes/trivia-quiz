@@ -1,7 +1,7 @@
 #quiz-out {
-    width: 80vw;
+    width: 70vw;
     background-color: #1a1a2e;
-    padding: 30px;
+    padding: 25px;
     border-radius: 15px;
     box-shadow: 2px 2px 20px rgba(0, 255, 234, 0.2);
     color: #e94560;
@@ -14,31 +14,47 @@
     font-size: 1.7rem;
     font-weight: bolder;
     letter-spacing: 5px;
-    background-color: white;
+    background-color: #e94560;
+    color: #1a1a2e;
     width: 25vw;
-    border-radius: 50px;
+    border-radius: 10px;
     margin: 1% auto 4%;
 }
 
 input {
-    width: 80%;
-    height: 4vh;
+    all: unset;
+    width: 90%;
+    height: 5vh;
     padding: 2px;
     padding-right: 10px;
-    border-radius: 10px;
-    margin-top: 5px;
+    border-radius: 5px;
+    margin-top: 7px;
     border: 0px solid;
     color: #1a1a2e;
+    background-color: white;
 }
 
 input:focus, input:active{
-    background-color: #e94560;
+    background-color: #c5f2ee;
+    border: 1.5px solid white;
+}
+
+.title-input {
+    width: 98%;
+    background-color: #e8f5f4;
+    border: 1.5px solid #00ffea;
 }
 
 .box {
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px 20px;
     border: 2px solid #00ffea;
     border-radius: 8px;
     font-size: 16px;
-    margin: 1%;
+    margin-top: 10px;
+}
+
+.quize-title {
+    padding-top: 15px;
 }

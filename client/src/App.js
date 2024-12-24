@@ -12,6 +12,7 @@ import Quizzes from "./pages/Quizzes/Quizzes";
 import Container from "./components/Container/Container";
 import UpdateQuiz from "./components/UpdateQuiz/UpdateQuiz";
 import CreateQuizR from "./components/CreateQuiz/CreateQuizR";
+import { fetchQuizzes1 } from "./api/quiz-api";
 
 function App() {
   const [userName, setUserName] = useState(null);
