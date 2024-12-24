@@ -39,6 +39,35 @@ input:focus, input:active{
     border: 1.5px solid white;
 }
 
+input[type="checkbox"] {
+    appearance: none;
+    width: 10px;
+    height: 17px;
+    border: 2px solid #e94560;
+    outline: none;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #e94560;
+    border-color: #1a1a2e;
+    position: relative;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 .title-input {
     width: 98%;
     background-color: #e8f5f4;

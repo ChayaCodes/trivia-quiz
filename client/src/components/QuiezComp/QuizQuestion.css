@@ -56,3 +56,10 @@
     color: #1a1a2e;
     transform: scale(1.2);
 }
+
+.quiz-answer-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+}
