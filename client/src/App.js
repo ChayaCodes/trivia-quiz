@@ -8,8 +8,8 @@ import Register from "./pages/RegisterForm/RegisterForm";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import Quizzes from "./pages/Quizzes/Quizzes";
 import Container from "./components/Container/Container";
-import UpdateQuiz from "./components/UpdateQuiz/UpdateQuiz";
-import CreateQuizR from "./components/CreateQuiz/CreateQuizR";
+import UpdateQuiz from "./pages/UpdateQuiz/UpdateQuiz";
+import CreateQuizR from "./pages/CreateQuiz/CreateQuizR";
 
 function App() {
   const [userName, setUserName] = useState(null);
