@@ -1,7 +1,15 @@
 import React from 'react'
 import RandomQuiz from '../../components/RandomQuiz/RandomQuiz'
+import { useLocation } from 'react-router-dom';
 
 const UpdateQuiz = () => {
+    const location = useLocation();
+    const quizData = location.state?.quiz;
+
+    if (!quizData) {
+        return <div>לא נמצאו נתונים לעריכת החידון</div>;
+    }
+
     const oldData = {
         title: 'yes',
         ques: [
@@ -14,7 +22,7 @@ const UpdateQuiz = () => {
     return (
         <RandomQuiz
             pageTitle='עדכן חידון'
-            data={oldData}
+            data={quizData}
             buttonCreate='שמור שינויים'
         />
     )
