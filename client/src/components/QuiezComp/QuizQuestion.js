@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import './QuizQuestion.css'
+import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import './QuizQuestion.css'
 
 
 const QuizQuestion = ({ questions, setQuestions }) => {

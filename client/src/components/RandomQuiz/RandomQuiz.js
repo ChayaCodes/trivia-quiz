@@ -1,9 +1,9 @@
+import './RandomQuiz.css'
 import React, { useState } from 'react'
-import QuizQuestion from '../QuiezComp/QuizQuestion';
 import { useNavigate } from 'react-router-dom';
 import { faBan, faGamepad, faPlus } from "@fortawesome/free-solid-svg-icons";
-import './RandomQuiz.css'
 import RandomQuizButtons from '../RQButtons/RandomQuizButtons';
+import QuizQuestion from '../QuiezComp/QuizQuestion';
 
 const RandomQuiz = ({ pageTitle, buttonCreate, data }) => {
 
@@ -19,7 +19,6 @@ const RandomQuiz = ({ pageTitle, buttonCreate, data }) => {
     }
 
     const addNewQuestion = () => {
-        console.log('add question?');
         setQuestions([...questions,
         {
             text: '', answers: [{ text: '', isCorrect: true },
