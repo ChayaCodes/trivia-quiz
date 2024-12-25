@@ -61,3 +61,11 @@
 .quiz-answer-buttons {
     gap: 5px;
 }
+
+#tooltip {
+    background-color: #f57288;
+    /* background-color: #e94560; */
+    opacity: 100%;
+    color: #1a1a2e;
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.402);
+}

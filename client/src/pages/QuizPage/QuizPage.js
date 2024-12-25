@@ -17,6 +17,8 @@ const QuizPage = () => {
   const nav=useNavigate();
 
   useEffect(() => {
+    console.log('in Quiz page');
+
     fetchQuizData();
     }, [next]);
 
@@ -26,6 +28,7 @@ const QuizPage = () => {
         api.get(`/admin/get_current_question/${quizId}`), // עדכון נתיב ה-API לכלול את quizId
       ]);
         setCurrentQuestion(data.data.current_question);
+        console.log(data);
         console.log('Current question:', data.data.current_question);
       setLoading(false);
     } catch (error) {

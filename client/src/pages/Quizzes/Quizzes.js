@@ -10,6 +10,7 @@ const Quizzes = () => {
     const navigate = useNavigate();
     
     useEffect(() => {
+        console.log('in Quizzes page');
         const fetchQuizzes = async () => {
             try {
                 const response = await api.get('/admin/view_quizzes');
