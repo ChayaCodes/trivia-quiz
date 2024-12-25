@@ -1,0 +1,14 @@
+.button-random-for-quiz {
+    width: fit-content;
+    cursor: pointer;
+    border: 2px solid ;
+    padding: 0.7% 2%;
+    border-radius: 100px;
+    color: #1a1a2e;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.button-random-for-quiz:hover {
+    background-color: #e94560;
+    transform: scale(1.1);
+}

@@ -20,9 +20,15 @@ const QuizQuestion = ({ questions, setQuestions }) => {
 
     const handleIsCorrectChange = (qIndex, aIndex) => {
         const newQuestions = [...questions];
-        newQuestions[qIndex].answers[aIndex].isCorrect = !newQuestions[qIndex].answers[aIndex].isCorrect;
+    
+        newQuestions[qIndex].answers = newQuestions[qIndex].answers.map((answer, index) => ({
+            ...answer,
+            isCorrect: index === aIndex,
+        }));
+    
         setQuestions(newQuestions);
     };
+    
 
     const addAnswer = (qIndex) => {
         const newQuestions = [...questions];

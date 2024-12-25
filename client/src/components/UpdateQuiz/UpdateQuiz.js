@@ -15,6 +15,7 @@ const UpdateQuiz = () => {
         <RandomQuiz
             pageTitle='עדכן חידון'
             data={oldData}
+            buttonCreate='שמור שינויים'
         />
     )
 }

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Quizzes.css';
-import { fetchQuizzes1 } from '../../api/quiz-api';
 
 
 function Quizzes() {
   const [quizzes, setQuizzes] = useState([]);
 
   useEffect(() => {
-    fetchQuizzes1();
     const fetchQuizzes = async () => {
       const data = [
         {

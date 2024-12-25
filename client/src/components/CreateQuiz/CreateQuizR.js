@@ -5,6 +5,7 @@ const CreateQuizR = () => {
     return (
         <RandomQuiz
             pageTitle='צור חידון חדש'
+            buttonCreate='צור חידון'
         />
     )
 }

@@ -39,6 +39,7 @@
 
 .q-a-r-b {
     color: #00ffea;
+    margin-top: 25%;
 }
 
 .q-q-b-u {
@@ -58,8 +59,5 @@
 }
 
 .quiz-answer-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: end;
+    gap: 5px;
 }

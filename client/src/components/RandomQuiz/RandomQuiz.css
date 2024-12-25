@@ -43,22 +43,22 @@ input[type="checkbox"] {
     appearance: none;
     width: 10px;
     height: 17px;
-    border: 2px solid #e94560;
+    border: 2px solid #00ffea;
     outline: none;
-    background-color: white;
+    background-color: #1a1a2e;
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 input[type="checkbox"]:checked {
-    background-color: #e94560;
+    background-color: #00ffea;
     border-color: #1a1a2e;
     position: relative;
 }
 
 input[type="checkbox"]:checked::after {
     content: '✔';
-    color: white;
+    color: #1a1a2e;
     font-size: 14px;
     font-weight: bold;
     position: absolute;
@@ -86,4 +86,20 @@ input[type="checkbox"]:checked::after {
 
 .quize-title {
     padding-top: 15px;
+}
+
+.quiz-bottom-buttons {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00ffea;
+}
+
+.buttoms-up {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 2%;
 }
