@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Quizzes.css';
+import { useNavigate, useNavigation } from 'react-router-dom';
 
 
 function Quizzes() {
   const [quizzes, setQuizzes] = useState([]);
+    const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuizzes = async () => {
@@ -40,7 +42,7 @@ function Quizzes() {
             <p>{quiz.description}</p>
             <div className='buttons'>
             <button className='activate-button'>התחל חידון</button>
-            <button className='edit-button'>ערוך חידון</button>
+            <button className='edit-button' onClick={() => navigate('/update-quiz')}>ערוך חידון</button>
             </div>
           </li>
         ))}
