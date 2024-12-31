@@ -4,8 +4,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */ 
-  /* אם מגבילים את הגובה הרספונסיבי נהרס */
   margin: 0;
   padding: 0;
 }

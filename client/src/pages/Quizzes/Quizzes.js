@@ -10,6 +10,7 @@ const Quizzes = () => {
     const navigate = useNavigate();
     
     useEffect(() => {
+        console.log('in Quizzes page');
         const fetchQuizzes = async () => {
             try {
                 const response = await api.get('/admin/view_quizzes');
@@ -19,10 +20,14 @@ const Quizzes = () => {
                 console.error('Error fetching quizzes:', error);
             }
         };
-
         fetchQuizzes();
     }, []);
     
+    const navigateToUpdateQuiz = (quizz) => {
+        navigate('/update-quiz', { state: { quiz: quizz } })
+        console.log(quizzes);
+    }
+
     const handleActivateQuiz = async (quizId) => {
       try {
           setActivatingQuizId(quizId);

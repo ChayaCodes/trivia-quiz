@@ -1,0 +1,105 @@
+#quiz-out {
+    width: 70vw;
+    background-color: #1a1a2e;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 20px rgba(0, 255, 234, 0.2);
+    color: #e94560;
+    font-family: 'CustomFont', sans-serif;
+    border: 2px solid white;
+}
+
+#page-title{
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    letter-spacing: 5px;
+    background-color: #e94560;
+    color: #1a1a2e;
+    width: 25vw;
+    border-radius: 10px;
+    margin: 1% auto 4%;
+}
+
+input {
+    all: unset;
+    width: 90%;
+    height: 5vh;
+    padding: 2px;
+    padding-right: 10px;
+    border-radius: 5px;
+    margin-top: 7px;
+    border: 0px solid;
+    color: #1a1a2e;
+    background-color: white;
+}
+
+input:focus, input:active{
+    background-color: #c5f2ee;
+    border: 1.5px solid white;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 10px;
+    height: 17px;
+    border: 2px solid #00ffea;
+    outline: none;
+    background-color: #1a1a2e;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #00ffea;
+    border-color: #1a1a2e;
+    position: relative;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: #1a1a2e;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.title-input {
+    width: 98%;
+    background-color: #e8f5f4;
+    border: 1.5px solid #00ffea;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px 20px;
+    border: 2px solid #00ffea;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.quize-title {
+    padding-top: 15px;
+}
+
+.quiz-bottom-buttons {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00ffea;
+}
+
+.buttoms-up {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 2%;
+}
